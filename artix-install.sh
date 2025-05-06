@@ -2,17 +2,14 @@
 
 # Minimalist Artix Linux Install Script (No Encryption, Suckless Philosophy)
 
-#!/bin/bash
-
-# Check if running as root
+# If not running as root, re-execute as root using su
 if [ "$EUID" -ne 0 ]; then
-  echo "[!] This script must be run as root."
-  echo "[+] Switching to root shell..."
-  exec su -l -c "bash '$0'"
+  echo "[!] Not running as root. Asking for root password..."
+  exec su -c "bash '$0'"
 fi
 
-# --- continue with the actual script here ---
-echo "[+] Running as root. Continuing setup..."
+# --- From here, the script is running as root ---
+echo "[+] Running as root. Continuing..."
 
 set -e
 
