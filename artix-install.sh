@@ -13,23 +13,25 @@ ping -c 1 archlinux.org >/dev/null 2>&1 || {
 echo "[+] Internet connected."
 
 # Disk selection
-DISK="/dev/nvme0n1"
-echo "[!] You will now manually partition $DISK with cfdisk."
-echo "    Layout: 400M EFI, 128G root, remaining for /home"
+lsblk -d -e 7,11 -o NAME,SIZE,MODEL
+read -p "[?] Enter your target disk (e.g., /dev/nvme0n1, /dev/sda, /dev/vda): " DISK
+[ ! -b "$DISK" ] && echo "[!] Invalid disk." && exit 1
+
+echo "[!] Partitioning $DISK (EFI: 400M, Root: 128G, Home: remaining)"
 read -p "    Press Enter to launch cfdisk..."
 cfdisk "$DISK"
 
-# Format partitions
-EFI="${DISK}p1"
-ROOT="${DISK}p2"
-HOME="${DISK}p3"
+# Handle partition suffix (p for nvme)
+P=; [[ "$DISK" == *"nvme"* ]] && P="p"
+EFI="${DISK}${P}1"
+ROOT="${DISK}${P}2"
+HOME="${DISK}${P}3"
 
 echo "[+] Formatting partitions..."
 mkfs.fat -F32 "$EFI"
 mkfs.ext4 -F "$ROOT"
 mkfs.ext4 -F "$HOME"
 
-# Mounting
 echo "[+] Mounting filesystems..."
 mount "$ROOT" /mnt
 mkdir -p /mnt/boot/efi /mnt/home
