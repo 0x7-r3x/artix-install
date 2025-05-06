@@ -46,6 +46,6 @@ Download runit init ISO from <a href="https://artixlinux.org/download.php" targe
 ### 2. Download and run the script
 
 ```bash
-curl -# -O https://dub.sh/7DqVpHr
+curl -# -O https://codeberg.org/0xhaxk/artix-install/raw/branch/main/artix-linux.sh
 chmod +x artix-linux.sh
 ./artix-linux.sh
