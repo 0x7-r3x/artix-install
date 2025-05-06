@@ -75,32 +75,34 @@ cat <<EOL > /etc/hosts
 127.0.0.1       localhost
 ::1             localhost
 127.0.1.1       0X.localdomain 0X
-EOL
 
-# Root password
+# Set root password
 echo "[+] Set root password:"
-passwd root
+passwd
 
-# User creation
-USERNAME=username
-useradd -mG wheel "$USERNAME"
+# Create new user
+read -p "[?] Enter new username: " USERNAME
+useradd -mG wheel "$USERNAME" || { echo "[!] Failed to create user."; exit 1; }
+
 echo "[+] Set password for user '$USERNAME':"
 passwd "$USERNAME"
 
-# Enable sudo
-EDITOR=vim visudo  # uncomment: %wheel ALL=(ALL:ALL) ALL
+# Enable sudo for wheel group
+echo "[+] Opening visudo. Uncomment this line to allow sudo for wheel group:"
+echo "    %wheel ALL=(ALL:ALL) ALL"
+read -p "    Press Enter to open visudo..."
+EDITOR=vim visudo
 
-# Autologin (runit getty service)
-#sed -i '/noclear/ --autologin '$USERNAME /etc/runit.d/tty1
-
-# Fonts
+# Fonts (optional)
+echo "[+] Installing fonts..."
 pacman -S --noconfirm ttf-hack ttf-hack-nerd
 
-# Bootloader
+# GRUB Bootloader installation
+echo "[+] Installing GRUB bootloader..."
 grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB
 grub-mkconfig -o /boot/grub/grub.cfg
 
-EOF
+exit
 
-echo "[✓] Install complete. Rebooting..."
+echo "[✓] Install complete. You may now exit and reboot."
 reboot
