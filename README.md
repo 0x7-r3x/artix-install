@@ -21,6 +21,7 @@ A simple, suckless-style install script for setting up a clean Artix Linux syste
 ## 🛠 Requirements
 
 - Artix Linux base ISO (runit edition)
+- pre-root mode (automates)
 - Internet connection (via Wi-Fi or Ethernet)
 - Target disk (e.g. `/dev/nvme0n1` or `/dev/sda`)
 
@@ -46,6 +47,6 @@ Download runit init ISO from <a href="https://artixlinux.org/download.php" targe
 ### 2. Download and run the script
 
 ```bash
-curl -# -O https://codeberg.org/0xhaxk/artix-install/raw/branch/main/artix-linux.sh
+curl -# -O https://codeberg.org/0xhaxk/artix-install/raw/branch/main/artix-install.sh
 chmod +x artix-linux.sh
 ./artix-linux.sh
