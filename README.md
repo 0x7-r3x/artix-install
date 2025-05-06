@@ -41,7 +41,7 @@ Installed via `basestrap`:
 
 ### 1. Boot into Artix Live ISO
 
-Download runit init iso from [artixlinux.org](https://artixlinux.org/download.php) and boot in UEFI mode.
+Download runit init ISO from <a href="https://artixlinux.org/download.php" target="_blank">artixlinux.org</a> and boot in UEFI mode.
 
 ### 2. Download and run the script
 
