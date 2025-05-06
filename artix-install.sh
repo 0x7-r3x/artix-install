@@ -2,6 +2,9 @@
 
 # Minimalist Artix Linux Install Script (No Encryption, Suckless Philosophy)
 
+# Ensure we are running as root
+[ "$EUID" -ne 0 ] && echo "[!] Please run as root. Switching..." && exec su -l
+
 set -e
 
 echo "[+] Checking internet connection..."
