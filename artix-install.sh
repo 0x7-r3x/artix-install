@@ -104,4 +104,3 @@ EOF
 
 echo "[✓] Install complete. Rebooting..."
 reboot
-
