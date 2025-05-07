@@ -32,6 +32,6 @@ makepkg -si --noconfirm
 cd ~
 
 echo "[+] Installing AUR packages with yay..."
-yay -Sy --noconfirm brave-bin alsa-utils
+yay -Sy --noconfirm brave-bin alsa-utils xhidecursor
 
 echo "[✓] Post-installation setup complete."
