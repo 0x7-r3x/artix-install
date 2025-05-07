@@ -50,6 +50,7 @@ Download runit init ISO from <a href="https://artixlinux.org/download.php" targe
 curl -# -O https://codeberg.org/0xhaxk/artix-install/raw/branch/main/artix-install.sh
 chmod +x artix-linux.sh
 ./artix-linux.sh
+```
 
 ### 3. postinstall script
 
@@ -57,3 +58,4 @@ chmod +x artix-linux.sh
 curl -# -O https://codeberg.org/0xhaxk/artix-install/raw/branch/main/postinstall.sh
 chmod +x postinstall.sh
 ./postinstall.sh
+```
