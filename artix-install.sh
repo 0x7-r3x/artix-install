@@ -90,6 +90,9 @@ sed -i 's/^# %wheel/%wheel/' /etc/sudoers
 echo "[+] Installing fonts..."
 pacman -S --noconfirm ttf-hack ttf-hack-nerd
 
+echo "[+] Installing liked packages..."
+pacman -S --noconfirm neofetch
+
 echo "[+] Installing GRUB bootloader..."
 grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=GRUB
 grub-mkconfig -o /boot/grub/grub.cfg
