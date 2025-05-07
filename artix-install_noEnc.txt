@@ -1,0 +1,119 @@
+artix linux script trying (no encryption)
+
+# for setting up wifi
+ip a
+
+# For wifi use wlan0 & if have cable it works out of the box.
+ip link set wlan0 up
+
+# if error (RF-kill) use 
+rfkill unblock wifi
+ip link set wlan0 up
+
+# To use the wifi we need connman utility
+connmanctl
+scan wifi
+services
+agent on
+connect wifi_******_**** (tab to auto complete)
+quit
+
+ip a
+
+# To check the disk
+lsblk
+
+# to delete old ones
+cfdisk /dev/nvme0n1
+delete 
+delete
+write -> yes
+new [size : 400M, Type : EFI System]
+new [size : 128G, Type : Linux filesystem]
+new [size : remainingG, Type : Linux filesystem]
+write -> yes{enter}
+quit
+lsblk
+
+# formatting with fat_filesystem
+mkfs.fat -F32 /dev/nvme0n1p1
+mkfs.ext4 /dev/nvme0n1p2
+    type "Y" if asks
+mkfs.ext4 /dev/nvme0n1p3
+lsblk
+ 
+#mounting
+mkdir -p /mnt/boot/efi
+mount /dev/nvme0n1p1 /mnt/boot/efi
+mount /dev/nvme0n1p2 /mnt
+mkdir -p /mnt/home
+mount /dev/nvme0n1p3 /mnt/home
+lsblk
+
+# installing base System
+basestrap -i /mnt/ base base-devel linux linux-firmware grub networkmanager networkmanager-runit runit vim elogind-runit efibootmgr bash-completion
+
+#generate FSTAB & chroot work
+fstabgen -U /mnt/ >> /mnt/etc/fstab
+artix-chroot /mnt/
+pacman -Sy
+ln -s /usr/share/zoneinfo/Asia/Kolkata /etc/localtime
+hwclock --systohc
+vim /etc/locale.gen # uncomment en_US.UTF-8 UTF-8
+local-gen
+vim /etc/locale.conf
+    LANG=en_US.UTF-8
+
+# hostname
+vim /etc/hostname
+    0X
+vim /etc/hosts
+    127.0.0.1       localhost
+    ::1             localhost
+    127.0.1.1       0X.localdomain      0X
+
+# root-password
+passwd root
+***
+***
+
+# create a user
+useradd -mG wheel "username"
+passwd "username"
+
+#edit the visudo
+EDITOR=vim visudo
+    #uncomment to allow memebers [%wheel ALL=(ALL:ALL) ALL]
+
+# autologin
+vim /etc/runit.d/tty1 # on second line after noclear [--autologin username]
+
+# not for non-encryption
+# add stuff to mkinitcpio.conf (for Enc_users)
+vim /etc/mkinitcpio.conf
+    # HOOKS = (7_encrypt 11_lvm2) | 7,11 are which place we have to add text
+mkinitcpio -p linux
+
+#font
+pacman -S ttf-hack ttf-hack-nerd
+mkinitcpio -p linux
+
+#install grub
+grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=GRUB
+grub-mkconfig -o /boot/grub/grub.cfg
+
+# exit and reboot
+exit
+reboot
+
+
+
+
+
+
+
+
+
+
+
+
