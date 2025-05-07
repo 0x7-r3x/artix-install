@@ -6,14 +6,19 @@ set -e
 echo "[+] Launching nmtui to configure network..."
 nmtui
 
-echo "[+] Enable Arch Linux repositories..."
+echo "[+] Enabling Arch Linux repositories..."
 sudo pacman -S --noconfirm artix-archlinux-support
 sudo pacman-key --populate archlinux
-sudo pacman -Sy --noconfirm
+sudo pacman -S --noconfirm archlinux-mirrorlist
+
+# Ensure newline at end of file (some sed versions fail without it)
+sudo sed -i -e '$a\' /etc/pacman.conf
 
 echo "[+] Inserting [extra] repo after [galaxy] in pacman.conf..."
-sudo sed -i '/^\[galaxy\]/a \
-[extra]\nInclude = /etc/pacman.d/mirrorlist-arch\n' /etc/pacman.conf
+sudo sed -i '/^\[galaxy\]/a [extra]\nInclude = /etc/pacman.d/mirrorlist-arch\n' /etc/pacman.conf
+
+echo "[+] Syncing pacman..."
+sudo pacman -Sy --noconfirm
 
 echo "[+] Updating system and installing essential packages..."
 sudo pacman -Syu --noconfirm base-devel go git \
