@@ -54,9 +54,9 @@ basestrap -i /mnt base base-devel linux linux-firmware grub \
 fstabgen -U /mnt >> /mnt/etc/fstab
 
 # Get user info
+read -s -p "[?] Enter root password: " ROOTPASS && echo
 read -p "[?] Enter new username: " USERNAME
 read -s -p "[?] Enter password for user '$USERNAME': " USERPASS && echo
-read -s -p "[?] Enter root password: " ROOTPASS && echo
 
 # Write chroot config script
 cat > /mnt/setup_inside_chroot.sh <<EOF
