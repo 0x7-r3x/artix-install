@@ -3,10 +3,6 @@
 
 set -e
 
-echo "[+] Linking runit services..."
-sudo ln -sf /etc/runit/sv/NetworkManager /run/runit/service/NetworkManager
-sudo ln -sf /etc/runit/sv/bluetoothd /run/runit/service/bluetoothd
-
 echo "[+] Launching nmtui to configure network..."
 nmtui
 
