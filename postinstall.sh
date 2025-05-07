@@ -8,6 +8,8 @@ nmtui
 
 echo "[+] Enable Arch Linux repositories..."
 sudo pacman -S --noconfirm artix-archlinux-support
+sudo pacman-key --populate archlinux
+sudo pacman -Sy --noconfirm
 
 echo "[+] Inserting [extra] repo after [galaxy] in pacman.conf..."
 sudo sed -i '/^\[galaxy\]/a \
