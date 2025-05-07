@@ -1,4 +1,5 @@
 #!/bin/bash
+
 # Minimal Post-Install Setup for Artix (runit)
 
 set -e
@@ -11,11 +12,8 @@ sudo pacman -S --noconfirm artix-archlinux-support
 sudo pacman-key --populate archlinux
 sudo pacman -S --noconfirm archlinux-mirrorlist
 
-# Ensure newline at end of file (some sed versions fail without it)
-sudo sed -i -e '$a\' /etc/pacman.conf
-
-echo "[+] Inserting [extra] repo after [galaxy] in pacman.conf..."
-sudo sed -i '/^\[galaxy\]/a [extra]\nInclude = /etc/pacman.d/mirrorlist-arch\n' /etc/pacman.conf
+echo "[+] Appending [extra] repo to the end of pacman.conf..."
+sudo bash -c 'echo -e "\n[extra]\nInclude = /etc/pacman.d/mirrorlist-arch" >> /etc/pacman.conf'
 
 echo "[+] Syncing pacman..."
 sudo pacman -Sy --noconfirm
