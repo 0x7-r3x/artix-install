@@ -53,6 +53,13 @@ chmod +x artix-linux.sh
 ```
 
 ### 3. postinstall script
+Enable networkmanager
+ ```bash
+ sudo ln -sf /etc/runit/sv/NetworkManager /run/runit/service/
+ nmtui
+ ping codeberg.org
+ ```
+
 
 ```bash
 curl -# -O https://codeberg.org/0xhaxk/artix-install/raw/branch/main/postinstall.sh
