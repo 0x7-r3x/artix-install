@@ -53,38 +53,49 @@ meson setup --buildtype=release build
 ninja -C build
 sudo ninja -C build install
 
-# Fallback installer
-echo "[+] Installing additional software packages with fallback (pacman -> yay)..."
-PACKAGE_LIST=(
-xorg base-devel libX11-devel libXft-devel libXinerama-devel chromium ffmpeg ntfs-3g ugrep noto-fonts-emoji noto-fonts-cjk feh lsd
-webkit2gtk-devel gcr-devel gstreamer1-devel lxappearance neovim clipmenu mpv mpd alsa-utils ncmpcpp cava newsboat zathura mupdf ranger
-ueberzug qutebrowser sakura w3m nodejs gimp bash-completion yt-dlp aria2 neofetch flameshot cmake ninja meson curl ImageMagick
-NetworkManager arandr bat breeze clang cmatrix lolcat-c figlet colordiff timeshift flac fzf git gstreamer-vaapi harfbuzz-devel htop
-imlib2-devel jq kdenlive libev-devel libjpeg-turbo-devel libmpc-devel linux-headers man-db mpc papirus-folders papirus-icon-theme
-pcre-devel pkgconf-devel python3-adblock python3-pip rsync simple-mtpfs terminus-font v4l2loopback void-docs-browse
-xdg-desktop-portal-wlr xdotool zathura-pdf-mupdf tmux xcb-util-renderutil-devel xcb-util-image-devel pkgconf uthash libconfig-devel
-figlet-fonts dunst noto-fonts-ttf pass wkhtmltopdf audacity readline-devel readline file-devel plata-theme img2pdf pcmanfm cups
-cups-pdf libinput-gestures river sway Waybar sandbar foot pamixer fcft-devel droidcam asciinema polybar bspwm sxhkd grim slop slurp
-tor tint2 openbox xfce4 obmenu-generator obconf hplip-gui clipman nerd-fonts wireshark-qt wireshark nim passmenu cvs unbound
-poppler-utils lf i3-gaps i3lock vim mupdf linux-lts scrot qemu virt-manager libvirt vte3 vde2 bridge-utils time screenkey
-clang-analyzer cmatrix emacs ffplay gdb go zig gvim hugo inkscape instaloader intel-media-driver linux-lts-headers pandoc pdftag
-rnnoise slop stow tcc texlive texlive-core wofi wbg Mousai NoiseTorch SDL2_gfx-devel SDL2_image-devel SDL2_ttf-devel SDL-devel
-aircrack-ng WoeUSB alsa-rnnoise alsa-plugins-ffmpeg android-tools alsa-plugins-jack barrier-gui bluez-alsa catimg clang-tools-extra
-cloc cool-retro-term cwm docker docbook dotool droidcam droidcam-obs-plugin farbfeld fff ffmpegthumbs ffscreencast flashrom
-font-iosevka github-cli glade3 giflib-tools glances groff-doc hyperfine joe libmagick-devel linux-lts most mpv-mpris mutt nemo
-newsraft nginx openvpn pass-import pass-otp patchutils progress python3-adblock qt5ct rnnoise rofi-emoji rtkit spice-vdagent termrec
-tigervnc tty-clock typespeed unclutter virt-viewer waydroid weechat wf-recorder wine wlr-randr wlroots0.17-devel wlroots0.17
-wayvnc xdg-desktop-portal-wlr xorg-server-xephyr xtools zig ack valgrind time linuxwave mako resynthesizer
+# Packages for pacman
+PACMAN_PACKAGES=(
+    ffmpeg ntfs-3g ugrep noto-fonts-emoji noto-fonts-cjk feh lsd lxappearance neovim 
+    clipmenu mpv mpd alsa-utils ncmpcpp cava newsboat zathura mupdf ranger ueberzug 
+    qutebrowser sakura w3m nodejs gimp bash-completion yt-dlp aria2 neofetch flameshot 
+    cmake ninja meson curl arandr bat breeze clang cmatrix figlet colordiff timeshift 
+    flac fzf git gstreamer-vaapi htop imlib2 jq kdenlive libjpeg-turbo linux-headers 
+    man-db mpc papirus-icon-theme pcre pkgconf rsync xdg-desktop-portal-wlr xdotool 
+    zathura-pdf-mupdf tmux pkgconf uthash dunst pass wkhtmltopdf audacity img2pdf 
+    pcmanfm cups cups-pdf river sway waybar foot pamixer polybar bspwm sxhkd grim 
+    slop slurp tor tint2 openbox clipman wireshark-qt nim cvs unbound lf i3lock vim 
+    mupdf linux-lts scrot virt-manager libvirt vte3 vde2 bridge-utils time screenkey 
+    cmatrix emacs gdb go zig gvim hugo inkscape intel-media-driver linux-lts-headers 
+    slop stow tcc wofi mousai aircrack-ng alsa-plugins-jack catimg cool-retro-term 
+    docker github-cli hyperfine libjpeg-turbo linux-lts most mpv-mpris mutt nemo nginx 
+    openvpn pass-otp patchutils progress qt5ct rnnoise rofi-emoji rtkit spice-vdagent 
+    tigervnc virt-viewer wine xdg-desktop-portal-wlr xorg-server-xephyr valgrind time 
+    linuxwave mako libx11 libxft libxinerama webkit2gtk gcr imagemagick networkmanager 
+    lolcat harfbuzz imlib2 libev libmpc pcre pkgconf xcb-util-renderutil xcb-util-image 
+    readline file
 )
 
-for pkg in "${PACKAGE_LIST[@]}"; do
-    if sudo pacman -Si "$pkg" >/dev/null 2>&1; then
-        sudo pacman -S --noconfirm "$pkg"
-    elif yay -Si "$pkg" >/dev/null 2>&1; then
-        yay -S --noconfirm "$pkg"
-    else
-        echo "[!] Skipping not found: $pkg"
-    fi
-done
+# Packages for yay (AUR)
+YAY_PACKAGES=(
+    gstreamer1 papirus-folders simple-mtpfs v4l2loopback void-docs-browse 
+    xcb-util-renderutil-devel xcb-util-image-devel libconfig-devel figlet-fonts 
+    plata-theme libinput-gestures sandbar fcft-devel droidcam xfce4 obmenu-generator 
+    obconf hplip-gui clipman nerd-fonts wireshark passmenu poppler-utils i3-gaps qemu 
+    clang-analyzer ffplay instaloader pandoc pdftag texlive texlive-core wbg noisetorch 
+    sdl2_gfx-devel sdl2_image-devel sdl2_ttf-devel sdl-devel woeusb alsa-rnnoise 
+    alsa-plugins-ffmpeg alsa-plugins-jack barrier-gui bluez-alsa clang-tools-extra 
+    cwm docbook dotool droidcam droidcam-obs-plugin farbfeld ffscreencast font-iosevka 
+    glade3 giflib-tools groff-doc joe libmagick-devel newsraft pass-import python3-adblock 
+    termrec tty-clock typespeed waydroid wlroots0.17-devel xtools resynthesizer
+)
 
+# Install pacman packages
+echo "Installing pacman packages..."
+sudo pacman -S --needed --noconfirm "${PACMAN_PACKAGES[@]}"
+
+# Install yay packages (AUR)
+echo "Installing yay packages..."
+yay -S --needed --noconfirm "${YAY_PACKAGES[@]}"
+
+echo "Installation complete!"
 echo "[✓] Full post-installation setup complete."
