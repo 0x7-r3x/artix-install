@@ -25,13 +25,17 @@ sudo pacman -Syu --noconfirm base-devel go git \
   xsettingsd
 
 echo "[+] Installing yay (AUR helper)..."
-cd /tmp/
-if [ ! -d yay ]; then
-    git clone https://aur.archlinux.org/yay
+if ! command -v yay >/dev/null 2>&1; then
+    cd /tmp/
+    if [ ! -d yay ]; then
+        git clone https://aur.archlinux.org/yay
+    fi
+    cd yay
+    makepkg -si --noconfirm
+    cd ~
+else
+    echo "[i] yay is already installed. Skipping..."
 fi
-cd yay
-makepkg -si --noconfirm
-cd ~
 
 echo "[+] mkdir new _folders"
 mkdir -p Videos Images Downloads Documents Music
