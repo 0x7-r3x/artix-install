@@ -20,7 +20,7 @@ sudo pacman -Sy --noconfirm
 
 echo "[+] Updating system and installing essential packages..."
 sudo pacman -Syu --noconfirm base-devel go git \
-  xf86-video-amdgpu xorg --ignore xorg-server-xdmx firefox mpd dunst \
+  xf86-video-amdgpu xorg --ignore xorg-server-xdmx xorg-server xorg-xinit libx11 libxinerama libxft webkit2gtk firefox mpd dunst \
   network-manager-applet redshift feh blueman pasystray gnupg xbindkeys \
   xsettingsd
 
@@ -35,5 +35,16 @@ cd ~
 
 echo "[+] Installing AUR packages with yay..."
 yay -Sy --noconfirm brave-bin alsa-utils xhidecursor
+
+
+echo "[+] Cloning and installing custom picom fork..."
+cd /tmp/
+if [ ! -d picom ]; then
+    git clone https://github.com/pijulius/picom
+fi
+cd picom
+meson setup --buildtype=release build
+ninja -C build
+sudo ninja -C build install
 
 echo "[✓] Post-installation setup complete."
