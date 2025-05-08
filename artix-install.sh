@@ -48,7 +48,7 @@ mount "$HOME" /mnt/home
 # Base install
 echo "[+] Installing base system..."
 basestrap -i /mnt base base-devel linux linux-firmware grub \
-  networkmanager networkmanager-runit runit elogind-runit vim \
+  networkmanager networkmanager-runit runit elogind-runit vim git \
   efibootmgr bash-completion
 
 fstabgen -U /mnt >> /mnt/etc/fstab
