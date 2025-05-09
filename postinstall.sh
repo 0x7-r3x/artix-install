@@ -21,7 +21,7 @@ sudo pacman -Sy --noconfirm
 echo "[+] Updating system and installing essential packages..."
 sudo pacman -Syu --noconfirm base-devel go git \
   xf86-video-amdgpu xorg --ignore xorg-server-xdmx xorg-server xorg-xinit libx11 libxinerama libxft webkit2gtk firefox mpd dunst \
-  network-manager-applet meson cmake redshift feh blueman pasystray gnupg xbindkeys \
+  network-manager-applet meson cmake libev libconfig uthash redshift feh blueman pasystray gnupg xbindkeys \
   xsettingsd
 
 echo "[+] Installing yay (AUR helper)..."
