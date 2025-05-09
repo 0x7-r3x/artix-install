@@ -54,39 +54,24 @@ ninja -C build
 sudo ninja -C build install
 
 # Packages for pacman
-PACMAN_PACKAGES=(
-    ffmpeg ntfs-3g ugrep noto-fonts-emoji noto-fonts-cjk feh lsd lxappearance neovim 
-    clipmenu mpv mpd alsa-utils ncmpcpp cava newsboat zathura mupdf ranger ueberzug 
-    qutebrowser sakura w3m nodejs gimp bash-completion yt-dlp aria2 neofetch flameshot 
-    cmake ninja meson curl arandr bat breeze clang cmatrix figlet colordiff timeshift 
-    flac fzf git gstreamer-vaapi htop imlib2 jq kdenlive libjpeg-turbo linux-headers 
-    man-db mpc papirus-icon-theme pcre pkgconf rsync xdg-desktop-portal-wlr xdotool 
-    zathura-pdf-mupdf tmux pkgconf uthash dunst pass wkhtmltopdf audacity img2pdf 
-    pcmanfm cups cups-pdf river sway waybar foot pamixer polybar bspwm sxhkd grim 
-    slop slurp tor tint2 openbox clipman wireshark-qt nim cvs unbound lf i3lock vim 
-    mupdf linux-lts scrot virt-manager libvirt vte3 vde2 bridge-utils time screenkey 
-    cmatrix emacs gdb go zig gvim hugo inkscape intel-media-driver linux-lts-headers 
-    slop stow tcc wofi mousai aircrack-ng alsa-plugins-jack catimg cool-retro-term 
-    docker github-cli hyperfine libjpeg-turbo linux-lts most mpv-mpris mutt nemo nginx 
-    openvpn pass-otp patchutils progress qt5ct rnnoise rofi-emoji rtkit spice-vdagent 
-    tigervnc virt-viewer wine xdg-desktop-portal-wlr xorg-server-xephyr valgrind time 
-    linuxwave mako libx11 libxft libxinerama webkit2gtk gcr imagemagick networkmanager 
-    lolcat harfbuzz imlib2 libev libmpc pcre pkgconf xcb-util-renderutil xcb-util-image 
-    readline file
+PACMAN_PACKAGES=( \
+    base-devel libx11 libxft libxinerama ffmpeg ntfs-3g noto-fonts-emoji \
+    noto-fonts-cjk feh webkit2gtk gstreamer lxappearance neovim mpv mpd \
+    alsa-utils ncmpcpp cava newsboat zathura mupdf ranger sakura nodejs \
+    bash-completion yt-dlp aria2 neofetch stow flameshot cmake ninja meson \
+    curl imagemagick networkmanager arandr bat breeze clang cmatrix lolcat \
+    figlet colordiff timeshift flac fzf git gstreamer-vaapi harfbuzz htop \
+    imlib2 jq libev libjpeg-turbo libmpc linux-headers man-db mpc \
+    papirus-icon-theme pcre pkgconf python-adblock python-pip rsync mtpfs \
+    ttf-hack ttf-hack-nerd v4l2loopback-dkms v4l2loopback-utils \
+    xdg-desktop-portal-wlr xdotool zathura-pdf-mupdf tmux \
+    xcb-util-renderutil xcb-util-image uthash libconfig dunst pass audacity \
+    readline file img2pdf cups cups-pdf libinput-gestures \
 )
 
 # Packages for yay (AUR)
 YAY_PACKAGES=(
-    gstreamer1 papirus-folders simple-mtpfs v4l2loopback void-docs-browse 
-    xcb-util-renderutil-devel xcb-util-image-devel libconfig-devel figlet-fonts 
-    plata-theme libinput-gestures sandbar fcft-devel droidcam xfce4 obmenu-generator 
-    obconf hplip-gui clipman nerd-fonts wireshark passmenu poppler-utils i3-gaps qemu 
-    clang-analyzer ffplay instaloader pandoc pdftag texlive texlive-core wbg noisetorch 
-    sdl2_gfx-devel sdl2_image-devel sdl2_ttf-devel sdl-devel woeusb alsa-rnnoise 
-    alsa-plugins-ffmpeg alsa-plugins-jack barrier-gui bluez-alsa clang-tools-extra 
-    cwm docbook dotool droidcam droidcam-obs-plugin farbfeld ffscreencast font-iosevka 
-    glade3 giflib-tools groff-doc joe libmagick-devel newsraft pass-import python3-adblock 
-    termrec tty-clock typespeed waydroid wlroots0.17-devel xtools resynthesizer
+    ugrep lsd gcr clipmenu-git ueberzugpp-nogl wkhtmltopdf-bin plata-theme
 )
 
 # Install pacman packages
