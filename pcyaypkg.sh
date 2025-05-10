@@ -3,7 +3,7 @@ PACMAN_PACKAGES=( \
     base-devel libx11 libxft libxinerama ffmpeg ntfs-3g noto-fonts-emoji \
     noto-fonts-cjk feh webkit2gtk gstreamer lxappearance neovim mpv mpd \
     alsa-utils ncmpcpp cava newsboat zathura mupdf ranger sakura nodejs \
-    bash-completion yt-dlp aria2 neofetch stow flameshot cmake ninja meson \
+    bash-completion yt-dlp gtk-engine-murrine ttf-roboto marco aria2 neofetch stow flameshot cmake ninja meson \
     curl imagemagick networkmanager arandr bat breeze clang cmatrix lolcat \
     figlet colordiff timeshift flac fzf git gstreamer-vaapi harfbuzz htop \
     imlib2 jq libev libjpeg-turbo libmpc linux-headers man-db mpc \
