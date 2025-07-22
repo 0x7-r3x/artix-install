@@ -47,7 +47,7 @@ Download runit init ISO from <a href="https://artixlinux.org/download.php" targe
 ### 2. Download and run the script
 
 ```bash
-curl -# -O https://codeberg.org/0xhaxk/artix-install/raw/branch/main/artix-install.sh
+curl -# -O https://github.com/0xhaxk/artix-install/raw/branch/main/artix-install.sh
 chmod +x artix-linux.sh
 ./artix-linux.sh
 ```
@@ -57,12 +57,12 @@ Enable networkmanager
  ```bash
  sudo ln -sf /etc/runit/sv/NetworkManager /run/runit/service/
  nmtui
- ping codeberg.org
+ ping x.com
  ```
 
 
 ```bash
-curl -# -O https://codeberg.org/0xhaxk/artix-install/raw/branch/main/postinstall.sh
+curl -# -O https://github.com/0xhaxk/artix-install/raw/branch/main/postinstall.sh
 chmod +x postinstall.sh
 ./postinstall.sh
 ```
