@@ -16,7 +16,14 @@ PACMAN_PACKAGES=( \
 
 # Packages for yay (AUR)
 YAY_PACKAGES=(
-    ugrep lsd gcr clipmenu-git ueberzugpp-nogl wkhtmltopdf-bin plata-theme libinput-gestures
+    ugrep lsd gcr clipmenu-git ueberzugpp-nogl wkhtmltopdf-bin plata-theme libinput-gestures \
+    hyprland-bin kitty waybar-hyprland \
+    swaybg swaylock-effects wofi wlogout mako thunar \
+    ttf-jetbrains-mono-nerd noto-fonts-emoji \
+    polkit-gnome python-requests starship \
+    swappy grim slurp pamixer brightnessctl gvfs \
+    bluez bluez-utils lxappearance xfce4-settings \
+    dracula-gtk-theme dracula-icons-git xdg-desktop-portal-hyprland-git
 )
 
 # Install pacman packages
