@@ -22,7 +22,7 @@ echo "[+] Updating system and installing essential packages..."
 sudo pacman -Syu --noconfirm base-devel go git \
   xf86-video-amdgpu xorg --ignore xorg-server-xdmx xorg-server xorg-xinit libx11 libxinerama libxft webkit2gtk firefox mpd dunst \
   network-manager-applet meson cmake libev libconfig uthash redshift feh blueman pasystray gnupg xbindkeys \
-  xsettingsd
+  xsettingsd pipewire pipewire-pulse pipewire-alsa pipewire-jack wireplumber
 
 echo "[+] Installing yay (AUR helper)..."
 if ! command -v yay >/dev/null 2>&1; then
